@@ -6,8 +6,8 @@
 # https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
 # https://learnxinyminutes.com/docs/yaml/
 
-title: fastpages
-description: An easy to use blogging platform with support for Jupyter Notebooks.
+title: Tenji Data Blog
+description: A blog to showcase how datascience, artificial intelligence and machine-learning can give your business the edge.
 github_username: heikoheilgendorff
 # you can comment the below line out if your repo name is not different than your baseurl
 github_repo: "tenji_website"
