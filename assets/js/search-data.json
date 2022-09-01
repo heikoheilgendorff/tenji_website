@@ -61,6 +61,25 @@
   
 
   
+      ,"page7": {
+          "title": "",
+          "content": "{ “lang”: “{{ site.lang | default: “en-US” }}”, “name”: “{{ site.title }}”, “short_name”: “{{ site.short_name | default: site.title | replace: ‘ ‘, ‘’ }}”, “theme_color”: “{{ site.manifest.theme_color | default: ‘#24292e’ }}”, “background_color”: “{{ site.manifest.background_color | default: ‘#ffffff’ }}”, {% if site.favicons -%} “icons”: [ {% for icon in site.favicons -%} { “src”: “{{ icon[1] | relative_url }}”, “sizes”: “{{ icon[0] }}x{{ icon[0] }}” }{% if forloop.last != true %},{% endif %} {% endfor %} ], {% endif -%} “start_url”: “/”, “display”: “standalone” } .",
+          "url": "https://heikoheilgendorff.github.io/tenji_website/manifest.json",
+          "relUrl": "/manifest.json",
+          "date": ""
+      }
+      
+  
+
+  
+      ,"page8": {
+          "title": "",
+          "content": "const version = ‘{{ site.time | date: ‘%Y%m%d%H%M%S’ }}’; const cacheName = static::${version}; . const buildContentBlob = () =&gt; { return [ {%- for post in site.posts limit: 10 -%} “{{ post.url | relative_url }}”, {%- endfor -%} {%- for page in site.pages -%} {%- unless page.url contains ‘sw.js’ or page.url contains ‘404.html’ -%} “{{ page.url | relative_url }}”, {%- endunless -%} {%- endfor -%} “{{ site.logo | relative_url }}”, “{{ site.baseurl }}/assets/default-offline-image.png”, “{{ site.baseurl }}/assets/scripts/fetch.js” ] } . const updateStaticCache = () =&gt; { return caches.open(cacheName).then(cache =&gt; { return cache.addAll(buildContentBlob()); }); }; . const clearOldCache = () =&gt; { return caches.keys().then(keys =&gt; { // Remove caches whose name is no longer valid. return Promise.all( keys .filter(key =&gt; { return key !== cacheName; }) .map(key =&gt; { console.log(Service Worker: removing cache ${key}); return caches.delete(key); }) ); }); }; . self.addEventListener(“install”, event =&gt; { event.waitUntil( updateStaticCache().then(() =&gt; { console.log(Service Worker: cache updated to version: ${cacheName}); }) ); }); . self.addEventListener(“activate”, event =&gt; { event.waitUntil(clearOldCache()); }); . self.addEventListener(“fetch”, event =&gt; { let request = event.request; let url = new URL(request.url); . // Only deal with requests from the same domain. if (url.origin !== location.origin) { return; } . // Always fetch non-GET requests from the network. if (request.method !== “GET”) { event.respondWith(fetch(request)); return; } . // Default url returned if page isn’t cached let offlineAsset = “/offline/”; . if (request.url.match(/.(jpe?g|png|gif|svg)$/)) { // If url requested is an image and isn’t cached, return default offline image offlineAsset = “{{ site.baseurl }}/assets/default-offline-image.png”; } . // For all urls request image from network, then fallback to cache, then fallback to offline page event.respondWith( fetch(request).catch(async () =&gt; { return (await caches.match(request)) || caches.match(offlineAsset); }) ); return; }); .",
+          "url": "https://heikoheilgendorff.github.io/tenji_website/sw.js",
+          "relUrl": "/sw.js",
+          "date": ""
+      }
+      
   
 
   
@@ -70,7 +89,13 @@
   
 
   
-      ,"page10": {
+  
+
+  
+  
+
+  
+      ,"page13": {
           "title": "",
           "content": "Sitemap: {{ “sitemap.xml” | absolute_url }} | .",
           "url": "https://heikoheilgendorff.github.io/tenji_website/robots.txt",
