@@ -67,7 +67,10 @@
   
 
   
-      ,"page9": {
+  
+
+  
+      ,"page10": {
           "title": "",
           "content": "Sitemap: {{ “sitemap.xml” | absolute_url }} | .",
           "url": "https://heikoheilgendorff.github.io/tenji_website/robots.txt",
