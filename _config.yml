@@ -83,8 +83,8 @@ html_escape:
 # Everything below here should be left alone. Modifications may break fastpages
 future: true
 #theme: minima
-#remote_theme: pages-themes/slate@v0.2.0
-remote_theme: forty-jekyll-theme
+remote_theme: pages-themes/slate@v0.2.0
+#remote_theme: forty-jekyll-theme
 plugins:
   - jekyll-feed
   - jekyll-gist
@@ -103,6 +103,7 @@ plugins:
 paginate: 15
 paginate_path: /page:num/
 
+remote_theme: pages-themes/slate@v0.2.0
 #remote_theme: jekyll/minima
 
 titles_from_headings:
